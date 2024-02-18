@@ -6,6 +6,8 @@ use App\Repository\ShoesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\UX\Turbo\Attribute\Broadcast;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 #[ORM\Entity(repositoryClass: ShoesRepository::class)]
 #[Broadcast]
 class Shoes
@@ -16,15 +18,27 @@ class Shoes
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Your first name must be at least {{ limit }} characters long',
+        maxMessage: 'Your first name cannot be longer than {{ limit }} characters',
+    )]
     private ?string $Name = null;
 
     #[ORM\Column]
+    #[Assert\NotNull]
+    #[Assert\Positive]
     private ?float $Price = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Url]
     private ?string $Image = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\DateTime]
     private ?\DateTimeImmutable $SaleDate = null;
 
     public function getId(): ?int
