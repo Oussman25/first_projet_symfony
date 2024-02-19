@@ -41,6 +41,13 @@ class Shoes
     #[Assert\DateTime]
     private ?\DateTimeImmutable $SaleDate = null;
 
+    /* constructor */
+    
+    public function __construct()
+    {
+        $this->createSaleDate = new \DateTimeImmutable();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

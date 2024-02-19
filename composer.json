@@ -6,6 +6,7 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
+        
         "php": ">=8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
@@ -15,7 +16,7 @@
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.25",
         "symfony/asset": "6.1.*",
-        "symfony/asset-mapper": "6.1.*",
+        "symfony/asset-mapper": "^6.3",
         "symfony/console": "6.1.*",
         "symfony/doctrine-messenger": "6.1.*",
         "symfony/dotenv": "6.1.*",
@@ -47,7 +48,11 @@
         "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.5",
+        "fakerphp/faker": "^1.23",
+        "its-mieger/lara-db-ext": "^1.14",
         "phpunit/phpunit": "^9.5",
+        "shake/database": "^3.0",
         "symfony/browser-kit": "6.1.*",
         "symfony/css-selector": "6.1.*",
         "symfony/debug-bundle": "6.1.*",
