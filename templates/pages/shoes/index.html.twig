@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ShoesController!{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Les Chaussures</h1>
+        <table class="table">
+            <thead>
+                <tr class="table-dark">
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Url Image</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for shoe in shoes %}
+                <tr>
+                <th scope="row">{{shoe.id}}</th>
+                <td>{{shoe.name}}</td>
+                <td>{{shoe.price}}</td>
+                <td>{{shoe.image}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {# <div class="navigation">
+            {{ knp_pagination_render(shoes) }}
+        </div> #}
+    </div>
+{% endblock %}
