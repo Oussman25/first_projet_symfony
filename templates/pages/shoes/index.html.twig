@@ -1,32 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ShoesController!{% endblock %}
+{% block title %}Chaussures{% endblock %}
 
 {% block body %}
     <div class="container mt-4">
         <h1>Les Chaussures</h1>
-        <table class="table">
-            <thead>
-                <tr class="table-dark">
-                <th scope="col">#</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Prix</th>
-                <th scope="col">Url Image</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for shoe in shoes %}
-                <tr>
-                <th scope="row">{{shoe.id}}</th>
-                <td>{{shoe.name}}</td>
-                <td>{{shoe.price}}</td>
-                <td>{{shoe.image}}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        {# <div class="navigation">
-            {{ knp_pagination_render(shoes) }}
-        </div> #}
+        <a class="btn btn-primary m-4" href="{{path('shoes.new')}}">Ajouter une chaussure</a>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% if shoes is not empty %}
+            <table class="table">
+                <thead>
+                    <tr class="table-dark">
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Url Image</th>
+                        <th scope="col">Modification</th>
+                        <th scope="col">Suppression</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for shoe in shoes %}
+                        <tr>
+                            <th scope="row">{{ shoe.id }}</th>
+                            <td>{{ shoe.name }}</td>
+                            <td>{{ shoe.price }}</td>
+                            <td>{{ shoe.image }}</td>
+                            <td><a class="btn btn-outline-warning" href="{{path('shoes.edit', { 'id': shoe.id })}}">Modification</a></td>
+                            <td><a class="btn btn-outline-danger" href="{{path('shoes.delete', { 'id': shoe.id })}}">Suppression</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="navigation">
+                {{ knp_pagination_render(shoes) }}
+            </div>
+        {% else %}
+            <p>Aucune chaussure disponible pour le moment.</p>
+        {% endif %}
     </div>
 {% endblock %}

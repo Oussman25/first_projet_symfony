@@ -7,8 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\UX\Turbo\Attribute\Broadcast;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: ShoesRepository::class)]
+#[UniqueEntity('Name')]
 #[Broadcast]
 class Shoes
 {
@@ -42,7 +44,7 @@ class Shoes
     private ?\DateTimeImmutable $SaleDate = null;
 
     /* constructor */
-    
+
     public function __construct()
     {
         $this->createSaleDate = new \DateTimeImmutable();
